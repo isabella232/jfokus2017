@@ -78,6 +78,7 @@ import javafx.collections.transformation.SortedList;
 
 import javax.json.JsonObject;
 import java.io.File;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -126,6 +127,11 @@ public class CloudLinkService extends BaseService {
     public CloudLinkService() {
         GluonCredentials gluonCredentials = new GluonCredentials("XXXXXXXXXXXXXX", "YYYYYYYYYYYYYY");//see https://gluonhq.com/products/cloudlink
 
+        InputStream isCredentials = CloudLinkService.class.getResourceAsStream("/gluoncloudlink_config.json");
+        if (isCredentials != null) {
+            gluonCredentials = new GluonCredentials(isCredentials);
+        }
+
         localGluonClient = GluonClientBuilder.create()
                 .credentials(gluonCredentials)
                 .authenticationMode(AuthenticationMode.PUBLIC)
@@ -133,7 +139,7 @@ public class CloudLinkService extends BaseService {
                 .build();
 
         cloudGluonClient = GluonClientBuilder.create()
-//                .host(GLUONCLOUD_HOST)
+                .host("https://otnbackend.gluonhq.com:8080")
                 .credentials(gluonCredentials)
                 .authenticationMode(AuthenticationMode.PUBLIC)
                 .operationMode(OperationMode.CLOUD_FIRST)

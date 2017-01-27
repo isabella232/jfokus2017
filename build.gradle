@@ -64,7 +64,7 @@ applicationDefaultJvmArgs = [
 dependencies {
     compile 'com.gluonhq:glisten-afterburner:1.1.0'
 
-    compile 'com.gluonhq:connect:1.1.0'
+    compile 'com.gluonhq:connect:1.3.0'
     compile 'com.google.zxing:core:3.2.1'
     compile 'com.gluonhq:maps:1.0.1'
     compile 'com.gluonhq:glisten-labs:1.0.0-b6'
