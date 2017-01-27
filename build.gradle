@@ -18,7 +18,7 @@ license {
     mapping {
         java = 'SLASHSTAR_STYLE'
     }
-    excludes(['**/*.json'])
+    excludes(['eu/hansolo/**/*.java', '**/*.json'])
 }
 
 
