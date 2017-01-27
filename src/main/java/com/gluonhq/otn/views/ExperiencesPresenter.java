@@ -78,7 +78,7 @@ public class ExperiencesPresenter extends GluonPresenter<OTNApplication> {
             AppBar appBar = getApp().getAppBar();
             appBar.setNavIcon(getApp().getNavMenuButton());
             appBar.setTitleText(OTNView.EXPERIENCES.getTitle());
-            appBar.getActionItems().add(getApp().getSearchButton());
+//            appBar.getActionItems().add(getApp().getSearchButton());
         });
         experiences.getStyleClass().add("experiences-view");
         
