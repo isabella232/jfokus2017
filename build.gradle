@@ -3,7 +3,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'org.javafxports:jfxmobile-plugin:1.1.0'
+        classpath 'org.javafxports:jfxmobile-plugin:1.3.2'
     }
 
 }
@@ -15,6 +15,10 @@ plugins {
 license {
     header = file('LICENSE')
     strictCheck true
+    mapping {
+        java = 'SLASHSTAR_STYLE'
+    }
+    excludes(['**/*.json'])
 }
 
 
@@ -29,17 +33,7 @@ themes {
 repositories {
     jcenter()
     maven {
-        url 'https://oss.sonatype.org/content/repositories/snapshots'
-    }
-    maven {
         url 'http://nexus.gluonhq.com/nexus/content/repositories/releases'
-    }
-    maven {
-        url 'http://nexus.gluonhq.com/nexus/content/repositories/snapshots'
-        credentials {
-            username gluonNexusUsername
-            password gluonNexusPassword
-        }
     }
     maven {
         url 'http://nexus.gluonhq.com/nexus/content/repositories/gluon-oss-daily'
@@ -55,9 +49,6 @@ repositories {
             password gluonNexusPassword
         }
     }
-//    flatDir {
-//        dirs 'libs'
-//    }
 }
 
 mainClassName = 'com.gluonhq.otn.OTNApplication'
@@ -71,17 +62,12 @@ applicationDefaultJvmArgs = [
 ]
 
 dependencies {
-    compile('com.gluonhq:glisten-afterburner:1.0.0') {
-        exclude group: 'com.airhacks', module: 'afterburner.mfx'
-    }
-    compileNoRetrolambda 'com.airhacks:afterburner.mfx:1.6.2'
+    compile 'com.gluonhq:glisten-afterburner:1.1.0'
 
     compile 'com.gluonhq:connect:1.1.0'
     compile 'com.google.zxing:core:3.2.1'
-    compile 'com.gluonhq:maps:1.0.1-SNAPSHOT'
+    compile 'com.gluonhq:maps:1.0.1'
     compile 'com.gluonhq:glisten-labs:1.0.0-b6'
-//    compile name: 'images'
-//    compile name: 'ScenicView'
 }
 
 configurations.all {
