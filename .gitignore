@@ -2,3 +2,4 @@
 build/
 .idea/
 src/main/resources/gluoncloudlink_config.json
+src/main/resources/gluonmobile.license
