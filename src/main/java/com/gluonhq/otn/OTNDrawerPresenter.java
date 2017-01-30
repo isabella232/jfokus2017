@@ -38,10 +38,13 @@ import com.gluonhq.charm.glisten.layout.layer.SidePopupView;
 import com.gluonhq.charm.glisten.mvc.View;
 import com.gluonhq.charm.glisten.visual.MaterialDesignIcon;
 
+import java.io.IOException;
 import java.util.Optional;
 
 import static com.gluonhq.charm.glisten.application.MobileApplication.HOME_VIEW;
 import static com.gluonhq.otn.OTNApplication.MENU_LAYER;
+
+import com.gluonhq.cloudlink.client.media.MediaClient;
 import com.gluonhq.otn.model.Service;
 
 import com.gluonhq.otn.util.OTNBundle;
@@ -49,6 +52,7 @@ import com.gluonhq.otn.views.EulaPresenter;
 import com.gluonhq.otn.views.helper.Util;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Region;
 import javax.inject.Inject;
@@ -62,14 +66,18 @@ public class OTNDrawerPresenter extends GluonPresenter<OTNApplication> {
     private final NavigationDrawer drawer;
     private final Header header;
     private final NavigationDrawer.Item logOut;
-    
+
     @Inject
     private Service service;
 
+    private MediaClient mediaClient;
+
     public OTNDrawerPresenter() {
+        mediaClient = new MediaClient();
+
         drawer = new NavigationDrawer();
         header = new Header();
-        
+
         drawer.setHeader(header);
 
         for (AppView view : OTNView.registry.getViews()) {
@@ -127,7 +135,7 @@ public class OTNDrawerPresenter extends GluonPresenter<OTNApplication> {
 
     private class Header extends Region {
 
-        private final ImageView background;
+        private ImageView background;
 //        private final Button profileButton;
         private Button eulaButton;
         private final Label text;
@@ -135,7 +143,13 @@ public class OTNDrawerPresenter extends GluonPresenter<OTNApplication> {
 
         public Header() {
             // background image
-            background = Util.getRandomBackgroundImageView();
+            try {
+                Image mediaImage = mediaClient.loadImage("drawerHeader");
+                background = new ImageView(mediaImage);
+                background.setPreserveRatio(true);
+            } catch (IOException e) {
+                background = Util.getRandomBackgroundImageView();
+            }
             aspectRatio = background.getImage().getHeight() / background.getImage().getWidth();
             background.setFitWidth(getWidth());
 
