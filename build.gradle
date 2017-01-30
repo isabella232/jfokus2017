@@ -31,10 +31,16 @@ themes {
 }
 
 repositories {
-    mavenLocal()
     jcenter()
     maven {
         url 'http://nexus.gluonhq.com/nexus/content/repositories/releases'
+    }
+    maven {
+        url 'http://nexus.gluonhq.com/nexus/content/repositories/snapshots'
+        credentials {
+            username gluonNexusUsername
+            password gluonNexusPassword
+        }
     }
     maven {
         url 'http://nexus.gluonhq.com/nexus/content/repositories/gluon-oss-daily'
