@@ -40,7 +40,6 @@ import com.gluonhq.charm.glisten.afterburner.AppView;
 import com.gluonhq.charm.glisten.afterburner.GluonInstanceProvider;
 import com.gluonhq.charm.glisten.application.MobileApplication;
 import com.gluonhq.charm.glisten.layout.layer.SidePopupView;
-import com.gluonhq.charm.glisten.license.License;
 import com.gluonhq.charm.glisten.visual.MaterialDesignIcon;
 import com.gluonhq.otn.model.Service;
 import com.gluonhq.otn.model.cloudlink3.CloudLink3Service;
@@ -61,7 +60,6 @@ import com.gluonhq.otn.util.OTNLogging;
 import com.gluonhq.otn.util.OTNNotifications;
 import javafx.stage.Window;
 
-@License(key = "??????????????????????")
 public class OTNApplication extends MobileApplication {
     
     public static final String MENU_LAYER = "SideMenu";
