@@ -32,10 +32,13 @@
 package com.gluonhq.otn.model.dummy;
 
 import com.gluonhq.charm.glisten.afterburner.GluonView;
+import com.gluonhq.connect.ConnectState;
+import com.gluonhq.connect.GluonObservableObject;
 import com.gluonhq.otn.model.BaseService;
 import com.gluonhq.otn.model.EnabledOTNExperiences;
 import com.gluonhq.otn.model.Exhibitor;
 import com.gluonhq.otn.model.LatestClearThreeDModelVotes;
+import com.gluonhq.otn.model.Link;
 import com.gluonhq.otn.model.News;
 import com.gluonhq.otn.model.Note;
 import com.gluonhq.otn.model.OTN3DModel;
@@ -262,17 +265,27 @@ public class DummyService extends BaseService {
     }
 
     @Override
-    public OTNCoffeeOrder orderOTNCoffee(OTNCoffee coffee, int strength) {
-        OTNCoffeeOrder order = new OTNCoffeeOrder(coffee.getType(), strength);
-        Platform.runLater(() -> order.responseProperty().set("OK: " + UUID.randomUUID().toString()));
-        return order;
+    public GluonObservableObject<OTNCoffeeOrder> orderOTNCoffee(OTNCoffee coffee, int strength) {
+        GluonObservableObject<OTNCoffeeOrder> observableOrder = new GluonObservableObject<>();
+        Platform.runLater(() -> {
+            OTNCoffeeOrder order = new OTNCoffeeOrder(coffee.getType(), strength);
+            order.setLink(new Link("local/" + UUID.randomUUID().toString()));
+            observableOrder.set(order);
+            observableOrder.setState(ConnectState.SUCCEEDED);
+        });
+        return observableOrder;
     }
 
     @Override
-    public OTNCarvedBadgeOrder orderOTNCarveABadge(String shape) {
-        OTNCarvedBadgeOrder order = new OTNCarvedBadgeOrder(shape);
-        Platform.runLater(() -> order.responseProperty().set("OK: " + UUID.randomUUID().toString()));
-        return order;
+    public GluonObservableObject<OTNCarvedBadgeOrder> orderOTNCarveABadge(String shape) {
+        GluonObservableObject<OTNCarvedBadgeOrder> observableOrder = new GluonObservableObject<>();
+        Platform.runLater(() -> {
+            OTNCarvedBadgeOrder order = new OTNCarvedBadgeOrder(shape);
+            order.setLink(new Link("local/" + UUID.randomUUID().toString()));
+            observableOrder.set(order);
+            observableOrder.setState(ConnectState.SUCCEEDED);
+        });
+        return observableOrder;
     }
 
     @Override

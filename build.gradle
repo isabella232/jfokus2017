@@ -31,6 +31,7 @@ themes {
 }
 
 repositories {
+    mavenLocal()
     jcenter()
     maven {
         url 'http://nexus.gluonhq.com/nexus/content/repositories/releases'
@@ -62,9 +63,10 @@ applicationDefaultJvmArgs = [
 ]
 
 dependencies {
-    compile 'com.gluonhq:glisten-afterburner:1.1.0'
+    compile 'com.gluonhq:glisten-afterburner:1.2.0-SNAPSHOT'
+    compile 'com.gluonhq:charm-cloudlink-client:4.4.0-SNAPSHOT'
 
-    compile 'com.gluonhq:connect:1.3.0'
+    compile 'com.gluonhq:connect:1.4.0'
     compile 'com.google.zxing:core:3.2.1'
     compile 'com.gluonhq:maps:1.0.1'
     compile 'com.gluonhq:glisten-labs:1.0.0-b6'
@@ -93,7 +95,7 @@ task extractNativeLib(type: Sync) {
 
 jfxmobile {
     downConfig {
-        version '3.0.0'
+        version '3.2.0'
         plugins 'browser', 'cache', 'connectivity', 'dialer', 'display', 'lifecycle', 'local-notifications', 'settings', 'statusbar', 'storage'
     }
     android {

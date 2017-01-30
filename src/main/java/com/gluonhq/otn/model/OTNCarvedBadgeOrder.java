@@ -31,13 +31,12 @@
  */
 package com.gluonhq.otn.model;
 
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javax.xml.bind.annotation.XmlElement;
 
 public class OTNCarvedBadgeOrder implements Processable {
 
     private String shape;
-    private final StringProperty response = new SimpleStringProperty("");
+    private Link link;
 
     public OTNCarvedBadgeOrder() {
     }
@@ -50,13 +49,22 @@ public class OTNCarvedBadgeOrder implements Processable {
         return shape;
     }
 
-    public final String getResponse() {
-        return response.get();
+    public void setShape(String shape) {
+        this.shape = shape;
+    }
+
+    @XmlElement(name = "_links")
+    public Link getLink() {
+        return link;
+    }
+
+    public void setLink(Link link) {
+        this.link = link;
     }
 
     @Override
-    public final StringProperty responseProperty() {
-        return response;
+    public String getId() {
+        return link == null ? null :
+                link.getSelf() == null ? null : link.getSelf().substring(link.getSelf().lastIndexOf("/") + 1);
     }
-
 }

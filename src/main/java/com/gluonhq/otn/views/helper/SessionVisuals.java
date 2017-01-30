@@ -231,7 +231,7 @@ public class SessionVisuals {
     private ObservableList<Session> getList(SessionListType listType) {
         if (usingOfflineEmptyLists && service.isAuthenticated()) {
             // OTN-513 - First time user logs in: stop the listener
-            otnNotifications.stopPreloadingScheduledSessions();
+//            otnNotifications.stopPreloadingScheduledSessions();
             
             retrieveLists();
         }
@@ -262,9 +262,9 @@ public class SessionVisuals {
 
         if (service.isAuthenticated()) {
             if (!listContains(session, listType)) {
-                if (listType == SessionListType.SCHEDULED) {
-                    otnNotifications.addScheduledSessionNotifications(session, false);
-                }
+//                if (listType == SessionListType.SCHEDULED) {
+//                    otnNotifications.addScheduledSessionNotifications(session, false);
+//                }
 
                 getList(listType).add(session);
                 showToast(listType, true);
@@ -284,9 +284,9 @@ public class SessionVisuals {
         }
 
         if (service.isAuthenticated()) {
-            if (listType == SessionListType.SCHEDULED) {    
-                otnNotifications.removeScheduledSessionNotifications(session);
-            }
+//            if (listType == SessionListType.SCHEDULED) {
+//                otnNotifications.removeScheduledSessionNotifications(session);
+//            }
 
             getList(listType).remove(session);
             showToast(listType, false);

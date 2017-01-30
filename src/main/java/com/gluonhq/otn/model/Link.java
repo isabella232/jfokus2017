@@ -31,32 +31,22 @@
  */
 package com.gluonhq.otn.model;
 
-import com.gluonhq.charm.glisten.afterburner.AppView;
-import com.gluonhq.otn.OTNView;
-import com.gluonhq.otn.util.OTNBundle;
+public class Link {
 
-public enum Experience {
-    COFFEE          ("OTN.VIEW.COFFEE",         OTNView.COFFEE),
-    BADGE           ("OTN.VIEW.BADGE",          OTNView.BADGE),
-    GAME            ("OTN.VIEW.GAME",           OTNView.GAME),
-    EMBROIDER       ("OTN.VIEW.EMBROIDER",      OTNView.EMBROIDER),
-    VOTE3D          ("OTN.VIEW.VOTE3D",         OTNView.VOTE3D),
-    IOT_WORKSHOP    ("OTN.VIEW.IOTWORKSHOP",    OTNView.IOT_WORKSHOP);
+    private String self;
 
-    private final String name;
-    private final AppView relatedView;
-
-    Experience(String experience, AppView relatedView) {
-        this.name = OTNBundle.getString(experience);
-        this.relatedView = relatedView;
+    public Link() {
     }
 
-    public void switchView() {
-        relatedView.switchView();
+    public Link(String self) {
+        this.self = self;
     }
 
-    @Override
-    public String toString() {
-        return name;
+    public String getSelf() {
+        return self;
+    }
+
+    public void setSelf(String self) {
+        this.self = self;
     }
 }

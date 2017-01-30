@@ -50,8 +50,8 @@ public class AboutPresenter extends GluonPresenter<OTNApplication> {
 //    @FXML
 //    private ImageView otnLogo;
 
-    @FXML
-    private ImageView oracleLogo;
+//    @FXML
+//    private ImageView oracleLogo;
 
     @FXML
     private ImageView gluonLogo;
@@ -59,8 +59,8 @@ public class AboutPresenter extends GluonPresenter<OTNApplication> {
 //    @FXML
 //    private Label otnLabel;
 
-    @FXML
-    private Label oracleLabel;
+//    @FXML
+//    private Label oracleLabel;
 
     @FXML
     private Label gluonLabel;
@@ -73,15 +73,15 @@ public class AboutPresenter extends GluonPresenter<OTNApplication> {
         });
 
 //        otnLogo.setImage(new Image(getClass().getResource("otn.png").toExternalForm()));
-        oracleLogo.setImage(new Image(getClass().getResource("oracle_cloud.png").toExternalForm()));
+//        oracleLogo.setImage(new Image(getClass().getResource("oracle_cloud.png").toExternalForm()));
         gluonLogo.setImage(new Image(getClass().getResource("gluon_logo.png").toExternalForm()));
 
 //        otnLogo.setFitHeight(100);
-        oracleLogo.setFitHeight(100);
+//        oracleLogo.setFitHeight(100);
         gluonLogo.setFitWidth(250);
 
 //        otnLabel.setText(OTNBundle.getString("OTN.ABOUT.LABEL.OTN"));
-        oracleLabel.setText(OTNBundle.getString("OTN.ABOUT.LABEL.ORACLE_CLOUD"));
+//        oracleLabel.setText(OTNBundle.getString("OTN.ABOUT.LABEL.ORACLE_CLOUD"));
         gluonLabel.setText(OTNBundle.getString("OTN.ABOUT.LABEL.GLUON"));
     }
 }

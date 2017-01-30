@@ -65,7 +65,7 @@ public class OTNDrawerPresenter extends GluonPresenter<OTNApplication> {
     
     @Inject
     private Service service;
-    
+
     public OTNDrawerPresenter() {
         drawer = new NavigationDrawer();
         header = new Header();

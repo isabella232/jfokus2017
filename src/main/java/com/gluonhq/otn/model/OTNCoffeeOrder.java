@@ -31,14 +31,13 @@
  */
 package com.gluonhq.otn.model;
 
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javax.xml.bind.annotation.XmlElement;
 
 public class OTNCoffeeOrder implements Processable {
 
     private String type;
     private int strength;
-    private final StringProperty response = new SimpleStringProperty("");
+    private Link link;
 
     public OTNCoffeeOrder() {
     }
@@ -52,16 +51,30 @@ public class OTNCoffeeOrder implements Processable {
         return type;
     }
 
+    public void setType(String type) {
+        this.type = type;
+    }
+
     public final int getStrength() {
         return strength;
     }
 
-    public final String getResponse() {
-        return response.get();
+    public void setStrength(int strength) {
+        this.strength = strength;
+    }
+
+    @XmlElement(name = "_links")
+    public Link getLink() {
+        return link;
+    }
+
+    public void setLink(Link link) {
+        this.link = link;
     }
 
     @Override
-    public final StringProperty responseProperty() {
-        return response;
+    public String getId() {
+        return link == null ? null :
+                link.getSelf() == null ? null : link.getSelf().substring(link.getSelf().lastIndexOf("/") + 1);
     }
 }

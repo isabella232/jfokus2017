@@ -470,7 +470,7 @@ public class BadgePresenter extends GluonPresenter<OTNApplication> {
             for (int j = 0; j < list.size() - 3; j++) {
                 if (checkCollision(i, j)) {
                     showError(i, j);
-                    errorLabel.setText(OTNBundle.getString("OTN.BADGE.ERROR_LINES_CANNOT_OVERLAP") + " " + OTNBundle.getString("OTN.BADGE.ERROR_TRY_AGAIN"));
+                    errorLabel.setText(OTNBundle.getString("OTN.BADGE.ERROR_LINES_CANNOT_OVERLAP"));
                     return false;
                 }
             }

@@ -88,7 +88,7 @@ public class ExperiencesPresenter extends GluonPresenter<OTNApplication> {
         enabledOTNExperiences = service.retrieveEnabledOTNExperiences();
         enabledOTNExperiences.addListener(o -> setExperiences());
 
-        experiences.setCenter(new Placeholder(PLACEHOLDER_MESSAGE, MaterialDesignIcon.ANNOUNCEMENT));
+        setExperiences();
     }
     
     private void setExperiences() {
@@ -180,7 +180,7 @@ public class ExperiencesPresenter extends GluonPresenter<OTNApplication> {
         public ExperienceHolder(Experience experience) {
             getStyleClass().add("experience-holder");
 
-            OTNView.registry.getView(experience.name())
+            OTNView.registry.getView(experience.name() + "_VIEW")
                     .ifPresent(v -> getChildren().add(getNodeFromIcon(v.getMenuIcon())));
             this.message.setText(experience.toString());
             getChildren().add(message);

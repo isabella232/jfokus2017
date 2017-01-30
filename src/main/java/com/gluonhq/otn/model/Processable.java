@@ -31,10 +31,8 @@
  */
 package com.gluonhq.otn.model;
 
-import javafx.beans.property.StringProperty;
-
 public interface Processable {
-    
-    StringProperty responseProperty();
-    
+
+    String getId();
+
 }

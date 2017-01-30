@@ -3,11 +3,11 @@
 <plist version="1.0">
 <dict>
         <key>CFBundleIdentifier</key>
-        <string>com.gluonhq.otn.OTNApplication</string>
+        <string>com.gluonhq.otnexp</string>
         <key>CFBundleVersion</key>
-        <!-- buildnumber --><string>127</string>
+        <!-- buildnumber --><string>1</string>
         <key>CFBundleShortVersionString</key>
-        <string>1.2</string>
+        <string>1.0</string>
         <key>CFBundleExecutable</key>
         <string>OTNClient</string>
         <key>CFBundleIconFiles</key>
@@ -24,7 +24,7 @@
                 <string>Icon-Small</string>
         </array>
         <key>CFBundleName</key>
-        <string>JavaOne16</string>
+        <string>OTN Live</string>
         <key>CFBundlePackageType</key>
         <string>APPL</string>
         <key>LSRequiresIPhoneOS</key>
@@ -83,5 +83,10 @@
                 </dict>  
             </dict>  
         </dict>  
-</dict>
+<key>NSCameraUsageDescription</key>
+<string>Camera</string>
+<key>NSBluetoothPeripheralUsageDescription</key>
+<string>Bluetooth</string>
+<key>NSPhotoLibraryUsageDescription</key>
+<string>Photo library</string></dict>
 </plist>

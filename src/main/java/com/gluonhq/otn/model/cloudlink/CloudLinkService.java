@@ -36,12 +36,12 @@ import com.gluonhq.connect.ConnectState;
 import com.gluonhq.connect.GluonObservableList;
 import com.gluonhq.connect.GluonObservableObject;
 import com.gluonhq.connect.converter.JsonIterableInputConverter;
-import com.gluonhq.connect.gluoncloud.AuthenticationMode;
-import com.gluonhq.connect.gluoncloud.GluonClient;
-import com.gluonhq.connect.gluoncloud.GluonClientBuilder;
-import com.gluonhq.connect.gluoncloud.GluonCredentials;
-import com.gluonhq.connect.gluoncloud.OperationMode;
-import com.gluonhq.connect.gluoncloud.SyncFlag;
+//import com.gluonhq.connect.gluoncloud.AuthenticationMode;
+//import com.gluonhq.connect.gluoncloud.GluonClient;
+//import com.gluonhq.connect.gluoncloud.GluonClientBuilder;
+//import com.gluonhq.connect.gluoncloud.GluonCredentials;
+//import com.gluonhq.connect.gluoncloud.OperationMode;
+//import com.gluonhq.connect.gluoncloud.SyncFlag;
 import com.gluonhq.connect.provider.DataProvider;
 import com.gluonhq.connect.provider.InputStreamListDataReader;
 import com.gluonhq.connect.source.BasicInputDataSource;
@@ -92,8 +92,8 @@ import static com.gluonhq.otn.util.OTNLogging.LOGGING_ENABLED;
 import com.gluonhq.otn.util.OTNSettings;
 import javafx.beans.InvalidationListener;
 
-public class CloudLinkService extends BaseService {
-
+public class CloudLinkService {//extends BaseService {
+/*
     private static final Logger LOG = Logger.getLogger(CloudLinkService.class.getName());
 
     private static final long SYNC_INTERVAL = 1000 * 60 * 30;   // 30 minutes
@@ -283,7 +283,7 @@ public class CloudLinkService extends BaseService {
                         }
                     });
                 }
-                
+
                 internalSessionsCloud.initializedProperty().addListener((obsCloud, ovCloud, nvCloud) -> {
                     if (nvCloud) {
                         // add sessions to the local list that exist in cloudlink but not locally
@@ -647,4 +647,5 @@ public class CloudLinkService extends BaseService {
             });
         }
     }
+*/
 }

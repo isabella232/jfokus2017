@@ -32,6 +32,8 @@
 package com.gluonhq.otn.views.helper;
 
 import com.gluonhq.charm.glisten.control.Alert;
+import com.gluonhq.connect.ConnectState;
+import com.gluonhq.connect.GluonObservableObject;
 import com.gluonhq.otn.util.OTNBundle;
 import com.gluonhq.otn.util.OTNSettings;
 import com.gluonhq.otn.views.dialog.QRDialog;
@@ -47,24 +49,24 @@ import com.gluonhq.otn.model.Processable;
 
 public class OrderHandler implements EventHandler<ActionEvent> {
 
-    private final Supplier<Processable> order;
-    private Processable processOrder;
+    private final Supplier<GluonObservableObject<? extends Processable>> order;
+    private GluonObservableObject<? extends Processable> processOrder;
     private final BooleanProperty processing = new SimpleBooleanProperty();
     private final PauseTransition timeout;
     private String message;
     
-    private final ChangeListener<String> listener = (obs, ov, nv) -> {
-        if (nv != null && !nv.isEmpty()) {
-            if (nv.startsWith("OK: ")) {
+    private final ChangeListener<ConnectState> listener = (obs, ov, nv) -> {
+        if (nv != null) {
+            if (ConnectState.SUCCEEDED.equals(nv)) {
                 stopProcessing(false, null);
-                QRDialog.show(nv.substring(4), message);
-            } else if (nv.startsWith("NOK: ")) {
-                stopProcessing(true, nv.substring(5));
+                QRDialog.show(processOrder.get().getId(), message);
+            } else if (ConnectState.FAILED.equals(nv)) {
+                stopProcessing(true, processOrder.getException() != null ? processOrder.getException().getMessage() : "Failed to process order.");
             }
         }
     };
 
-    public OrderHandler(Supplier<Processable> order, String message) {
+    public OrderHandler(Supplier<GluonObservableObject<? extends Processable>> order, String message) {
         this.order = order;
         this.message = message;
         
@@ -80,7 +82,7 @@ public class OrderHandler implements EventHandler<ActionEvent> {
         // only process order once:
         processOrder = order.get();
         if (processOrder != null) {
-            processOrder.responseProperty().addListener(listener);
+            processOrder.stateProperty().addListener(listener);
         } else {
             stopProcessing(true, OTNBundle.getString("OTN.EXPERIENCES.DIALOG.ERROR.MESSAGE.ORDER"));
         }
@@ -90,7 +92,7 @@ public class OrderHandler implements EventHandler<ActionEvent> {
         processing.set(false);
         timeout.stop();
         if (processOrder != null) {
-            processOrder.responseProperty().removeListener(listener);
+            processOrder.stateProperty().removeListener(listener);
         }
         if (showErrorDialog) {
             Alert error = new Alert(javafx.scene.control.Alert.AlertType.ERROR);

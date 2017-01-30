@@ -43,7 +43,7 @@ import com.gluonhq.charm.glisten.layout.layer.SidePopupView;
 import com.gluonhq.charm.glisten.license.License;
 import com.gluonhq.charm.glisten.visual.MaterialDesignIcon;
 import com.gluonhq.otn.model.Service;
-import com.gluonhq.otn.model.cloudlink.CloudLinkService;
+import com.gluonhq.otn.model.cloudlink3.CloudLink3Service;
 import com.gluonhq.otn.util.OTNSearch;
 import com.gluonhq.otn.views.helper.ConnectivityUtils;
 import com.gluonhq.otn.views.helper.SessionVisuals;
@@ -68,7 +68,7 @@ public class OTNApplication extends MobileApplication {
     public static final String POPUP_FILTER_SESSIONS_MENU = "FilterSessionsMenu";
 
     private static final GluonInstanceProvider instanceSupplier = new GluonInstanceProvider() {{
-        bindProvider(Service.class, CloudLinkService::new);
+        bindProvider(Service.class, CloudLink3Service::new);
         bindProvider(OTNSearch.class, OTNSearch::new);
         bindProvider(OTNNotifications.class, OTNNotifications::new);
         bindProvider(SessionVisuals.class, SessionVisuals::new);
@@ -83,7 +83,7 @@ public class OTNApplication extends MobileApplication {
 
     private OTNDrawerPresenter drawerPresenter;
     
-    private OTNNotifications otnNotifications;
+//    private OTNNotifications otnNotifications;
 
     @Override
     public void init() {
@@ -95,8 +95,8 @@ public class OTNApplication extends MobileApplication {
         Injector.instantiateModelOrService(Service.class);
 
         // check if the app starts from a notification
-        otnNotifications = Injector.instantiateModelOrService(OTNNotifications.class);
-        otnNotifications.findNotificationIdAtStartup(getParameters().getNamed());
+//        otnNotifications = Injector.instantiateModelOrService(OTNNotifications.class);
+//        otnNotifications.findNotificationIdAtStartup(getParameters().getNamed());
 
         for (AppView view : OTNView.registry.getViews()) {
             view.registerView(this);

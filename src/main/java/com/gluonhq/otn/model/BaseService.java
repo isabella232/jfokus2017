@@ -109,12 +109,13 @@ public abstract class BaseService implements Service {
         }
 
         if (scheduledSessions == null) {
-            OTNNotifications notifications = Injector.instantiateModelOrService(OTNNotifications.class);
-            // stop recreating notifications, after the list of scheduled sessions is fully retrieved
-            scheduledSessions = internalRetrieveScheduledSessions(notifications::stopPreloadingScheduledSessions);
-            // start recreating notifications as soon as the scheduled sessions are being retrieved
-            notifications.preloadScheduledSessions();
-            
+//            OTNNotifications notifications = Injector.instantiateModelOrService(OTNNotifications.class);
+//            // stop recreating notifications, after the list of scheduled sessions is fully retrieved
+//            scheduledSessions = internalRetrieveScheduledSessions(notifications::stopPreloadingScheduledSessions);
+//            // start recreating notifications as soon as the scheduled sessions are being retrieved
+//            notifications.preloadScheduledSessions();
+
+            scheduledSessions = internalRetrieveScheduledSessions(null);
         }
 
         return scheduledSessions;

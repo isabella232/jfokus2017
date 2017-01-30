@@ -31,6 +31,7 @@
  */
 package com.gluonhq.otn.model;
 
+import com.gluonhq.connect.GluonObservableObject;
 import javafx.beans.property.ReadOnlyListProperty;
 import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.collections.ObservableList;
@@ -189,7 +190,7 @@ public interface Service {
      * @param strength int from 0 to 10
      * @return the ID of the order
      */
-    OTNCoffeeOrder orderOTNCoffee(OTNCoffee coffee, int strength);
+    GluonObservableObject<OTNCoffeeOrder> orderOTNCoffee(OTNCoffee coffee, int strength);
 
     /**
      * Orders the shape and returns the ID of the order.
@@ -197,7 +198,7 @@ public interface Service {
      * @param shape TODO: the format of the shape must still be defined.
      * @return the ID of the order
      */
-    OTNCarvedBadgeOrder orderOTNCarveABadge(String shape);
+    GluonObservableObject<OTNCarvedBadgeOrder> orderOTNCarveABadge(String shape);
 
     /**
      * Retrieves a list of available OTN Games for the OTN Play-a-game experience.
