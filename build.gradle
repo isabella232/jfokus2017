@@ -84,21 +84,6 @@ configurations.all {
     }
 }
 
-// run this task to extract libCharm.a from charm-ios.jar to jniLibs before running launchIOSDevice
-task extractNativeLib(type: Sync) {
-    def iosNativeDir = project.file(project.jfxmobile.ios.nativeDirectory)
-    if (!iosNativeDir.exists()) {
-        iosNativeDir.mkdirs()
-    } 
-
-    setIncludeEmptyDirs(false)
-    from {
-        configurations.iosRuntime.collect { zipTree(it).matching { include 'native/**' } }
-    }
-    into iosNativeDir
-    eachFile {details -> details.path = details.name }
-}
-
 jfxmobile {
     downConfig {
         version '3.2.0'
@@ -114,7 +99,6 @@ jfxmobile {
         }
     }
     ios {
-        launcherClassName = 'com.gluonhq.charm.down.notifications.CustomLauncher'
         infoPList = file('src/ios/Default-Info.plist')
         forceLinkClasses = [
                 'com.gluonhq.otn.**.*',
