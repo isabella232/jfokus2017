@@ -8,9 +8,9 @@
         <uses-permission android:name="android.permission.VIBRATE"/>
         <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
         <uses-sdk android:minSdkVersion="4" android:targetSdkVersion="21"/>
-        <application android:label="OTN Live" android:name="android.support.multidex.MultiDexApplication" android:icon="@mipmap/ic_launcher">
+        <application android:label="OTN CodeLounge" android:name="android.support.multidex.MultiDexApplication" android:icon="@mipmap/ic_launcher">
                 <activity android:name="javafxports.android.FXActivity" 
-                          android:label="OTN Live"
+                          android:label="OTN CodeLounge"
                           android:launchMode="singleTop"
                           android:screenOrientation="portrait"
                           android:configChanges="screenSize">
