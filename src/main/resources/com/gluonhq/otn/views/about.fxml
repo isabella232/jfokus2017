@@ -16,9 +16,9 @@
                 <Label fx:id="otnLabel"/>
                 <Separator/>
                 -->
-                <!--<ImageView fx:id="oracleLogo" preserveRatio="true" styleClass="oracle-logo"/>-->
-                <!--<Label fx:id="oracleLabel"/>-->
-                <!--<Separator/>-->
+                <ImageView fx:id="oracleLogo" preserveRatio="true" styleClass="oracle-logo"/>
+                <Label fx:id="oracleLabel"/>
+                <Separator/>
                 <VBox styleClass="gluon-logo-container">
                     <ImageView fx:id="gluonLogo" preserveRatio="true" styleClass="gluon-logo"/>
                     <Label fx:id="gluonLabel"/>

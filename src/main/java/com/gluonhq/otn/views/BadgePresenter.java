@@ -187,7 +187,6 @@ public class BadgePresenter extends GluonPresenter<OTNApplication> {
                     drawPane.setMaxSize(size, size);
                 }
             });
-                showInstructionsDialog();
         });
         
         badge.setOnHiding(e -> {
@@ -227,82 +226,6 @@ public class BadgePresenter extends GluonPresenter<OTNApplication> {
         //errorLabel.managedProperty().bind(errorLabel.visibleProperty());
         validated.set(true);
         lock = false;
-    }
-
-    private void showInstructionsDialog() {
-        boolean show = Services.get(SettingsService.class)
-                .map(s -> !"checked".equals(s.retrieve(DONT_SHOW_AGAIN_KEY)))
-                .orElse(true);
-
-        if (show) {
-            Label title = new Label(OTNBundle.getString("OTN.BADGE.DIALOG.TITLE"));
-            Label titleDescription = new Label(OTNBundle.getString("OTN.BADGE.DIALOG.TITLE_DESCRIPTION"));
-            Label listenTitle = new Label(OTNBundle.getString("OTN.BADGE.DIALOG.LISTEN_TITLE"));
-            Label listenDescription = new Label(OTNBundle.getString("OTN.BADGE.DIALOG.LISTEN_DESCRIPTION"));
-            Label drawTitle = new Label(OTNBundle.getString("OTN.BADGE.DIALOG.DRAW_TITLE"));
-            Label drawDescription = new Label(OTNBundle.getString("OTN.BADGE.DIALOG.DRAW_DESCRIPTION"));
-            Label cutTitle = new Label(OTNBundle.getString("OTN.BADGE.DIALOG.CUT_TITLE"));
-            Label cutDescription = new Label(OTNBundle.getString("OTN.BADGE.DIALOG.CUT_DESCRIPTION"));
-
-            ImageView listenImageView = new ImageView(BadgePresenter.class.getResource("EAR_Listen.png").toExternalForm());
-            ImageView drawImageView = new ImageView(BadgePresenter.class.getResource("FINGER_Draw.png").toExternalForm());
-            ImageView cutImageView = new ImageView(BadgePresenter.class.getResource("QRCODE_Cut.png").toExternalForm());
-
-            // FIXME: Get rid of VBox's and use only GridPane
-            VBox mainContainer = new VBox();
-            GridPane contentContainer = new GridPane();
-            VBox titleContainer = new VBox();
-            VBox listenContainer = new VBox();
-            VBox drawContainer = new VBox();
-            VBox cutContainer = new VBox();
-
-            CheckBox checkBox = new CheckBox(OTNBundle.getString("OTN.DIALOG.DONT_SHOW_AGAIN"));
-
-            titleContainer.getChildren().addAll(title, titleDescription);
-            listenContainer.getChildren().addAll(listenTitle, listenDescription);
-            drawContainer.getChildren().addAll(drawTitle, drawDescription);
-            cutContainer.getChildren().addAll(cutTitle, cutDescription);
-
-            contentContainer.add(listenImageView, 0, 0);
-            contentContainer.add(listenContainer, 1, 0);
-            contentContainer.add(drawImageView, 0, 1);
-            contentContainer.add(drawContainer, 1, 1);
-            contentContainer.add(cutImageView, 0, 2);
-            contentContainer.add(cutContainer, 1, 2);
-
-            mainContainer.getChildren().addAll(contentContainer, checkBox);
-
-            title.getStyleClass().add("dialog-badge-title");
-            titleDescription.getStyleClass().add("dialog-badge-description");
-            listenTitle.getStyleClass().add("dialog-badge-title");
-            listenDescription.getStyleClass().add("dialog-badge-description");
-            drawTitle.getStyleClass().add("dialog-badge-title");
-            drawDescription.getStyleClass().add("dialog-badge-description");
-            cutTitle.getStyleClass().add("dialog-badge-title");
-            cutDescription.getStyleClass().add("dialog-badge-description");
-            titleContainer.getStyleClass().add("dialog-badge-container");
-            listenContainer.getStyleClass().add("dialog-badge-container");
-            drawContainer.getStyleClass().add("dialog-badge-container");
-            cutContainer.getStyleClass().add("dialog-badge-container");
-            contentContainer.getStyleClass().add("dialog-badge-grid");
-            checkBox.getStyleClass().add("dialog-badge-checkbox");
-            mainContainer.getStyleClass().add("dialog-badge-main-container");
-
-            Dialog instructionsDialog = new Dialog();
-            instructionsDialog.setTitle(titleContainer);
-            instructionsDialog.setContent(mainContainer);
-
-            Button okButton = new Button(OTNBundle.getString("OTN.BUTTON.OK"));
-            okButton.setOnAction(event -> {
-                if (checkBox.isSelected()) {
-                    Services.get(SettingsService.class).ifPresent(s -> s.store(DONT_SHOW_AGAIN_KEY, "checked"));
-                }
-                instructionsDialog.hide();
-            });
-            instructionsDialog.getButtons().add(okButton);
-
-            instructionsDialog.showAndWait();
-        }
     }
 
     private void createAuthenticatedView() {
