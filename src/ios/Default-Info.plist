@@ -7,7 +7,7 @@
         <key>CFBundleVersion</key>
         <!-- buildnumber --><string>1</string>
         <key>CFBundleShortVersionString</key>
-        <string>1.0</string>
+        <string>1.1</string>
         <key>CFBundleExecutable</key>
         <string>OTNClient</string>
         <key>CFBundleIconFiles</key>
